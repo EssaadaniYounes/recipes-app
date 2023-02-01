@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, RefreshControl } from "react-native";
+import { View, Text, ScrollView, RefreshControl, Button } from "react-native";
 import React, { useState, useEffect, useCallback } from "react";
 import MealProfile from "../components/Meal";
 import { MealSpoon } from "../typings";
@@ -19,6 +19,10 @@ const Meals = ({ navigation }) => {
   }, []);
   return (
     <View>
+      <Button
+        title="ADD MEAL"
+        onPress={() => navigation.navigate("PostMeal")}
+      />
       <Text className="text-xl font-bold uppercase text-center mt-2 text-gray-700 tracking-tighter">
         Recipes
       </Text>
