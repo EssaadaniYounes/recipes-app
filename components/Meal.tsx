@@ -17,7 +17,7 @@ const MealProfile = ({
       <Image
         source={{ uri: meal.image }}
         alt={meal.title}
-        className="w-full h-44 shadow-2xl shadow-black rounded-md "
+        className="w-full h-44 shadow-2xl shadow-black rounded-md object-cover"
       />
       <View className="mt-1 bg-gray-50 w-full rounded-sm shadow-lg p-2 flex flex-row items-center justify-between">
         <Text className="font-bold text-gray-700 text-xl capitalize">

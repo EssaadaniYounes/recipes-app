@@ -19,10 +19,6 @@ const Meals = ({ navigation }) => {
   }, []);
   return (
     <View>
-      <Button
-        title="ADD MEAL"
-        onPress={() => navigation.navigate("PostMeal")}
-      />
       <Text className="text-xl font-bold uppercase text-center mt-2 text-gray-700 tracking-tighter">
         Recipes
       </Text>
