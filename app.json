@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "gallery-app",
-    "slug": "gallery-app",
+    "name": "Younes's Recipes",
+    "slug": "recipes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.essaadani_younes.recipes"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bd220e70-2250-454b-b042-9f65a2d09f97"
+      }
     }
   }
 }
