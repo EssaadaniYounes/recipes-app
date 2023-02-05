@@ -21,7 +21,7 @@ export type ExtendedIngredient = {
 export type MealSpoon = {
   id: number;
   title: string;
-  image: string;
+  image?: string;
   imageType: string;
 };
 export type MealDetail = MealSpoon & {

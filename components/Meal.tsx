@@ -15,7 +15,11 @@ const MealProfile = ({
       onPress={() => navigation.navigate("Recipe", { mealId: meal.id })}
     >
       <Image
-        source={{ uri: meal.image }}
+        source={{
+          uri: meal.image
+            ? meal.image
+            : "https://spoonacular.com/recipeImages/french-rolls.jpg",
+        }}
         alt={meal.title}
         className="w-full h-44 shadow-2xl shadow-black rounded-md object-cover"
       />
