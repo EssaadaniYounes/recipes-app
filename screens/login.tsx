@@ -2,14 +2,28 @@ import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { User } from "../typings";
-import { async } from "@firebase/util";
+import firebaseConfig from "../firebase";
+import { initializeApp } from "firebase/app";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 const Login = () => {
-  const [user, setUser] = useState<User>({});
+  const [user, setUser] = useState<User>({ email: "", password: "" });
   const handleLogin = async () => {
-    console.log("LOggin");
+    try {
+      // await createUserWithEmailAndPassword(auth, user.email, user.password);
+      await signInWithEmailAndPassword(auth, user.email, user.password);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
-    <View className="flex items-center justify-center">
+    <View className="flex items-center justify-center h-screen">
       <Image
         source={require("../assets/images/meals/logo.png")}
         className="w-40 h-52"
