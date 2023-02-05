@@ -1,7 +1,13 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { User } from "../typings";
+import { async } from "@firebase/util";
 const Login = () => {
+  const [user, setUser] = useState<User>({});
+  const handleLogin = async () => {
+    console.log("LOggin");
+  };
   return (
     <View className="flex items-center justify-center">
       <Image
@@ -13,7 +19,8 @@ const Login = () => {
           <AntDesign name="user" size={24} color="black" />
           <TextInput
             placeholder="Email@gmail.com"
-            className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px] "
+            className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
+            onChangeText={(text) => setUser({ ...user, email: text })}
           />
         </View>
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
@@ -22,9 +29,11 @@ const Login = () => {
             placeholder="Password"
             secureTextEntry={true}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
+            onChangeText={(text) => setUser({ ...user, password: text })}
           />
         </View>
         <TouchableOpacity
+          onPress={handleLogin}
           activeOpacity={0.4}
           className=" mx-auto bg-blue-300 w-36 py-3 rounded-xl shadow-md flex flex-row items-center justify-center"
         >

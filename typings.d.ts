@@ -33,3 +33,10 @@ export type MealDetail = MealSpoon & {
   sourceUrl: string;
   summary: string;
 };
+
+export type User {
+  id?: string;
+  userName?: string;
+  email?: string;
+  password?: string;
+}
