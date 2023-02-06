@@ -1,14 +1,14 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Meals, MealDetails, PostMeal } from "../screens";
+import { Meals, MealDetails, PostMeal, Profile } from "../screens";
 import { Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Logout from "../components/Logout";
 
-const Header = ({ title }: { title: string }) => {
+const Header = ({ title, navigation }: { title: string }) => {
   return (
     <SafeAreaView>
       <View
@@ -25,7 +25,7 @@ const Header = ({ title }: { title: string }) => {
         <Text style={{ fontWeight: "bold", fontSize: 20, color: "#374151" }}>
           {title}
         </Text>
-        <Logout />
+        <Logout navigation={navigation} />
       </View>
     </SafeAreaView>
   );
@@ -43,12 +43,13 @@ export default function UserStack() {
             component={Meals}
             options={({ navigation }) => {
               return {
-                header: () => <Header title="Meals " />,
+                header: () => <Header title="Meals " navigation={navigation} />,
               };
             }}
           />
           <Stack.Screen name="Recipe" component={MealDetails} />
           <Stack.Screen name="PostMeal" component={PostMeal} />
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

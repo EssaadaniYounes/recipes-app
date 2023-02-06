@@ -4,11 +4,13 @@ import { AntDesign } from "@expo/vector-icons";
 import firebaseConfig from "../firebase";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { useAuth } from "../hooks/useAuth";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const Logout = () => {
+const Logout = ({ navigation }) => {
   const [showLogout, setShowLogout] = useState(false);
+  const { user } = useAuth();
 
   const handleLogout = async () => {
     auth
@@ -22,6 +24,7 @@ const Logout = () => {
       <TouchableOpacity
         activeOpacity={0.4}
         onPress={() => setShowLogout(!showLogout)}
+        // onPress={() => navigation.navigate("Profile")}
         className="bg-gray-300 rounded-full overflow-hidden h-12 w-12 items-end justify-end"
       >
         <Image
@@ -32,11 +35,11 @@ const Logout = () => {
       {showLogout && (
         <TouchableOpacity
           onPress={handleLogout}
-          className="absolute  min-w-[100px] h-9 -bottom-12 bg-blue-200 px-3 right-2 flex-row items-center justify-center rounded-md"
+          className="absolute  min-w-[140px] min-h-[30px] -bottom-12 bg-blue-200 px-3 right-2 flex-row items-center justify-center rounded-md"
         >
           <AntDesign name="logout" size={15} color="#374151" />
           <Text className="text-base font-semibold ml-2 text-gray-700">
-            Logout
+            Logout {user?.displayName}
           </Text>
         </TouchableOpacity>
       )}

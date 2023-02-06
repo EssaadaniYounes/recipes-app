@@ -36,7 +36,7 @@ export type MealDetail = MealSpoon & {
 
 export type User {
   id?: string;
-  userName?: string;
+  displayName?: string;
   email: string;
   password: string;
 }

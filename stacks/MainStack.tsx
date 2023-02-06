@@ -7,4 +7,5 @@ export default function RootNavigation() {
   const { user } = useAuth();
 
   return user ? <UserStack /> : <AuthStack />;
+  // return <AuthStack />;
 }

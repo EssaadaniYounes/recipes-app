@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import MealProfile from "../components/Meal";
 import { MealSpoon } from "../typings";
 
-import { getMeals } from "../services/get";
 import { initializeApp } from "firebase/app";
 
 import firebaseConfig from "../firebase";
@@ -19,7 +18,6 @@ import Loading from "../components/Loading";
 const getMealsSnapShot = async (
   setState: React.Dispatch<React.SetStateAction<MealSpoon[]>>
 ) => {
-  let random = Math.floor(Math.random() * 40);
   initializeApp(firebaseConfig);
   const db = getFirestore();
   const q = query(
