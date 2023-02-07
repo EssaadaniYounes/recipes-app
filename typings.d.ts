@@ -34,9 +34,20 @@ export type MealDetail = MealSpoon & {
   summary: string;
 };
 
-export type User {
+export type User = {
   id?: string;
-  displayName?: string;
-  email: string;
-  password: string;
-}
+  displayName: string | null | undefined;
+  email: string | null | undefined;
+  password?: string;
+  photoURL: string | null | undefined;
+  gender?: "Male" | "Female" | null | undefined;
+  relation?: "Single" | "Married" | "Engaged" | "In Relation";
+  city?: string | undefined | null;
+  birthday?: string | undefined | null;
+  phone?: string;
+};
+
+export type PanelItem = {
+  icon: JSX.Element;
+  title: string;
+};

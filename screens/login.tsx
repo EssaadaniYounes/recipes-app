@@ -1,4 +1,12 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { User } from "../typings";
@@ -11,16 +19,18 @@ const Login = ({ navigation }) => {
   const [user, setUser] = useState<User>({ email: "", password: "" });
   const handleLogin = async () => {
     try {
-      // await createUserWithEmailAndPassword(auth, user.email, user.password);
-      await signInWithEmailAndPassword(auth, user.email, user.password).then(
-        (res) => console.log(res.user.displayName)
+      signInWithEmailAndPassword(auth, user.email, user.password).then((res) =>
+        console.log(res.user.displayName)
       );
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <View className="flex items-center justify-center h-screen">
+    <KeyboardAvoidingView
+      behavior="padding"
+      className="flex items-center justify-center h-screen"
+    >
       <Image
         source={require("../assets/images/meals/logo.png")}
         className="w-40 h-52"
@@ -65,7 +75,7 @@ const Login = ({ navigation }) => {
           </View>
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
