@@ -2,9 +2,10 @@ import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import { Meal, MealDetail } from "../typings";
 import Ingredient from "./Ingredient";
+import Loading from "./Loading";
 
 function Details({ meal }: { meal: MealDetail | undefined }) {
-  return (
+  return meal?.id ? (
     <View className="bg-gray-100 mx-3 relative">
       <Text className="text-xl font-bold capitalize fixed top-0 text-center text-gray-600 my-1 mr-2">
         {meal?.title}
@@ -19,7 +20,7 @@ function Details({ meal }: { meal: MealDetail | undefined }) {
       </Text>
       <View className="flex flex-row flex-wrap justify-between p-1">
         {meal?.extendedIngredients.map((ing, idx) => (
-          <Ingredient ingredient={ing} key={ing.id + idx} />
+          <Ingredient ingredient={ing} key={ing.name + Math.random() + idx} />
         ))}
       </View>
       <Text className="text-xl uppercase my-3 ml-1 mb-2 font-semibold text-gray-700">
@@ -40,6 +41,8 @@ function Details({ meal }: { meal: MealDetail | undefined }) {
         {meal?.readyInMinutes}min / {meal?.pricePerServing}$
       </Text>
     </View>
+  ) : (
+    <Loading />
   );
 }
 

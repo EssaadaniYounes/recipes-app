@@ -21,7 +21,7 @@ export type ExtendedIngredient = {
 export type MealSpoon = {
   id: number;
   title: string;
-  image: string;
+  image?: string;
   imageType: string;
 };
 export type MealDetail = MealSpoon & {
@@ -32,4 +32,22 @@ export type MealDetail = MealSpoon & {
   readyInMinutes: number;
   sourceUrl: string;
   summary: string;
+};
+
+export type User = {
+  id?: string;
+  displayName: string | null | undefined;
+  email: string | null | undefined;
+  password?: string;
+  photoURL: string | null | undefined;
+  gender?: "Male" | "Female" | null | undefined;
+  relation?: "Single" | "Married" | "Engaged" | "In Relation";
+  city?: string | undefined | null;
+  birthday?: string | undefined | null;
+  phone?: string;
+};
+
+export type PanelItem = {
+  icon: JSX.Element;
+  title: string;
 };

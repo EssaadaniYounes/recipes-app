@@ -2,20 +2,45 @@ import { View, Text, ScrollView, RefreshControl, Button } from "react-native";
 import React, { useState, useEffect, useCallback } from "react";
 import MealProfile from "../components/Meal";
 import { MealSpoon } from "../typings";
-import { fetch } from "../utils/fetch";
-import { getMeals } from "../services/get";
+
+import { initializeApp } from "firebase/app";
+
+import firebaseConfig from "../firebase";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
+import Loading from "../components/Loading";
+const getMealsSnapShot = async (
+  setState: React.Dispatch<React.SetStateAction<MealSpoon[]>>
+) => {
+  initializeApp(firebaseConfig);
+  const db = getFirestore();
+  const q = query(
+    collection(db, "meals"),
+    where("random", ">=", Math.random()),
+    limit(10)
+  );
+
+  const querySnapshot = await getDocs(q);
+  setState(querySnapshot.docs);
+};
 const Meals = ({ navigation }) => {
   const [meals, setMeals] = useState<MealSpoon[]>([]);
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    getMeals(setMeals);
+    getMealsSnapShot(setMeals);
     setRefreshing(false);
   }, []);
 
   useEffect(() => {
-    getMeals(setMeals);
+    getMealsSnapShot(setMeals);
   }, []);
   return (
     <View>
@@ -29,9 +54,15 @@ const Meals = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {meals.map((meal) => (
-          <MealProfile meal={meal} key={meal.id} navigation={navigation} />
-        ))}
+        {meals.length == 0
+          ? [...Array(10).keys()].map((i) => <Loading key={i} />)
+          : meals.map((meal) => (
+              <MealProfile
+                meal={meal.data()}
+                key={meal.id}
+                navigation={navigation}
+              />
+            ))}
       </ScrollView>
     </View>
   );
