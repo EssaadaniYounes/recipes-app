@@ -5,3 +5,4 @@ export { default as MealDetails } from "./meal-details";
 export { default as PostMeal } from "./post-meal";
 export { default as Profile } from "./profile";
 export { default as EditProfile } from "./edit-profile";
+export { default as Favorites } from "./favorites";

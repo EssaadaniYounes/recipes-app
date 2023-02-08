@@ -1,1 +1,3 @@
-TODO: i will create users document foreach user there's a field called belongTo 'this field represent which authenticated user is this' and on update profile i update the authenticated and also the user that has gender bio city relation birthday phone
+favorite => id, meal_id, favored_by, timestamp
+meals => id, ....
+favorites.find(f=> f.meal_id== meal.id)

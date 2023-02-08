@@ -34,6 +34,9 @@ function Profile({ navigation }) {
             icon: (
               <MaterialIcons name="favorite-outline" size={24} color="black" />
             ),
+            callBack() {
+              return navigation.navigate("Favorites");
+            },
           },
           {
             title: "downloads",

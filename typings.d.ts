@@ -33,7 +33,11 @@ export type MealDetail = MealSpoon & {
   sourceUrl: string;
   summary: string;
 };
-
+export type Favorite = {
+  id: number;
+  meal_id: number;
+  favored_by: string;
+};
 export type User = {
   id?: string;
   displayName: string | null | undefined;
@@ -50,4 +54,5 @@ export type User = {
 export type PanelItem = {
   icon: JSX.Element;
   title: string;
+  callBack?: () => void;
 };

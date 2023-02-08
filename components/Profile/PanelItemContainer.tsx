@@ -7,6 +7,7 @@ function PanelItemContainer({ item }: { item: PanelItem }) {
   return (
     <TouchableOpacity
       activeOpacity={0.4}
+      onPress={item.callBack}
       className="bg-gray-50 rounded-md flex-row justify-between items-center px-2"
     >
       <View className=" flex-row  py-3 space-x-2 items-center">

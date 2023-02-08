@@ -1,7 +1,14 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Meals, MealDetails, PostMeal, Profile, EditProfile } from "../screens";
+import {
+  Meals,
+  MealDetails,
+  PostMeal,
+  Profile,
+  EditProfile,
+  Favorites,
+} from "../screens";
 import { Text, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -64,6 +71,29 @@ export default function UserStack() {
             component={MealDetails}
             options={({ navigation }) =>
               options(navigation, "Recipe", () => (
+                <TouchableOpacity
+                  activeOpacity={0.4}
+                  onPress={() => navigation.navigate("Meals")}
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 50,
+                    padding: 8,
+                    width: 48,
+                    height: 48,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <FontAwesome name="home" size={35} color="black" />
+                </TouchableOpacity>
+              ))
+            }
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={Favorites}
+            options={({ navigation }) =>
+              options(navigation, "Favorites", () => (
                 <TouchableOpacity
                   activeOpacity={0.4}
                   onPress={() => navigation.navigate("Meals")}

@@ -23,23 +23,28 @@ const getMealsSnapShot = async (
 ) => {
   initializeApp(firebaseConfig);
   const db = getFirestore();
-  let q = query(
-    collection(db, "meals"),
-    where("random", ">=", Math.random()),
-    limit(10)
-  );
 
-  const mealsQuerySnapshot = await getDocs(q);
-  q = query(collection(db, "favorites"), where("favored_by", "==", uid));
+  let q = query(collection(db, "favorites"), where("favored_by", "==", uid));
   const favoritesQuerySnapshot = await getDocs(q);
+  q = query(
+    collection(db, "meals"),
+    where(
+      "id",
+      "in",
+      favoritesQuerySnapshot.docs.map((f) => f.data().meal_id)
+    ),
+    limit(40)
+  );
+  const mealsQuerySnapshot = await getDocs(q);
   setMeals(mealsQuerySnapshot.docs);
   setFavorites(favoritesQuerySnapshot.docs);
 };
-const Meals = ({ navigation }) => {
+export default function Favorites({ navigation }) {
   const [meals, setMeals] = useState<MealSpoon[]>([]);
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const uid = useGetAuth().currentUser?.uid;
+
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     getMealsSnapShot(setMeals, setFavorites, uid);
@@ -49,11 +54,14 @@ const Meals = ({ navigation }) => {
   useEffect(() => {
     getMealsSnapShot(setMeals, setFavorites, uid);
   }, []);
-
+  const onDelete = (id: number) => {
+    const newMeals = meals.filter((m) => m.id != id);
+    setMeals(newMeals);
+  };
   return (
     <View>
       <Text className="text-xl font-bold uppercase text-center mt-2 text-gray-700 tracking-tighter">
-        Recipes
+        Favorites
       </Text>
       <ScrollView
         className="m-2"
@@ -70,11 +78,10 @@ const Meals = ({ navigation }) => {
                 key={meal.id}
                 navigation={navigation}
                 favorites={favorites}
+                onDelete={() => onDelete(meal.id)}
               />
             ))}
       </ScrollView>
     </View>
   );
-};
-
-export default Meals;
+}
