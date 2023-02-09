@@ -1,1 +1,6 @@
-TODO: i will create users document foreach user there's a field called belongTo 'this field represent which authenticated user is this' and on update profile i update the authenticated and also the user that has gender bio city relation birthday phone
+    "@react-native-community/checkbox": "^0.5.14",
+ "@react-native-firebase/app": "^16.7.0",
+    "@react-native-firebase/auth": "^17.0.0",
+        "react-native-date-picker": "^4.2.6",
+    "react-native-device-info": "^10.3.0",
+    "react-native-get-app-name": "^1.5.0",
