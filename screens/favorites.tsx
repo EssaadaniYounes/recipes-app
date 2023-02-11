@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore";
 import Loading from "../components/Loading";
 import useGetAuth from "../hooks/useGetAuth";
+import { useTranslation } from "react-i18next";
 const getMealsSnapShot = async (
   setMeals: React.Dispatch<React.SetStateAction<MealSpoon[]>>,
   setFavorites: React.Dispatch<React.SetStateAction<any[]>>,
@@ -44,7 +45,7 @@ export default function Favorites({ navigation }) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const uid = useGetAuth().currentUser?.uid;
-
+  const { t } = useTranslation();
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     getMealsSnapShot(setMeals, setFavorites, uid);
@@ -61,7 +62,7 @@ export default function Favorites({ navigation }) {
   return (
     <View>
       <Text className="text-xl font-bold uppercase text-center mt-2 text-gray-700 tracking-tighter">
-        Favorites
+        {t("user.favorites")}
       </Text>
       <ScrollView
         className="m-2"

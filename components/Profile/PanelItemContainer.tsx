@@ -1,14 +1,14 @@
-import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { PanelItem } from "../../typings";
+import { ArrowIcon } from "../";
 
 function PanelItemContainer({ item }: { item: PanelItem }) {
   return (
     <TouchableOpacity
       activeOpacity={0.4}
       onPress={item.callBack}
-      className="bg-gray-50 rounded-md flex-row justify-between items-center px-2"
+      className="bg-gray-50 rounded-md my-[2px] flex-row justify-between items-center px-2"
     >
       <View className=" flex-row  py-3 space-x-2 items-center">
         {item.icon}
@@ -16,7 +16,7 @@ function PanelItemContainer({ item }: { item: PanelItem }) {
           {item.title}
         </Text>
       </View>
-      <AntDesign name="right" size={18} color="#5c5959" />
+      <ArrowIcon color="#5c5959" />
     </TouchableOpacity>
   );
 }

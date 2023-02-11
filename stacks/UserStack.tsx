@@ -16,6 +16,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import HeaderProfile from "../components/HeaderProfile";
 import { FontAwesome } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 const Header = ({
   title,
@@ -50,6 +51,7 @@ const Header = ({
 };
 
 export default function UserStack() {
+  const { t } = useTranslation();
   const Stack = createNativeStackNavigator();
   const options = (navigation, title, component?) => {
     return {
@@ -65,13 +67,13 @@ export default function UserStack() {
           <Stack.Screen
             name="Meals"
             component={Meals}
-            options={({ navigation }) => options(navigation, "Recipes")}
+            options={({ navigation }) => options(navigation, "")}
           />
           <Stack.Screen
             name="Recipe"
             component={MealDetails}
             options={({ navigation }) =>
-              options(navigation, "Recipe", () => (
+              options(navigation, t("screens.recipe"), () => (
                 <TouchableOpacity
                   activeOpacity={0.4}
                   onPress={() => navigation.navigate("Meals")}
@@ -144,7 +146,7 @@ export default function UserStack() {
             name="EditProfile"
             component={EditProfile}
             options={{
-              title: "Edit Profile",
+              title: t("actions.edit-profile") || "",
               presentation: "modal",
               animationTypeForReplace: "push",
               animation: "slide_from_right",
@@ -154,7 +156,7 @@ export default function UserStack() {
             name="Languages"
             component={Languages}
             options={{
-              title: "Change App Language",
+              title: t("actions.change-language") || "",
               presentation: "modal",
               animationTypeForReplace: "push",
               animation: "slide_from_bottom",

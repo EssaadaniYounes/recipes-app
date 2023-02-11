@@ -24,6 +24,7 @@ export type MealSpoon = {
   image?: string;
   imageType: string;
 };
+
 export type MealDetail = MealSpoon & {
   vegetarian: boolean;
   vegan: boolean;
@@ -38,18 +39,22 @@ export type Favorite = {
   meal_id: number;
   favored_by: string;
 };
+type Relation = "single" | "married" | "engaged" | "in-relation" | "widower";
+type Mixed = string | null | undefined;
+type Gender = "male" | "female" | undefined;
 export type User = {
   id?: string;
-  displayName: string | null | undefined;
-  email: string | null | undefined;
+  displayName?: Mixed;
+  email?: Mixed;
   password?: string;
-  photoURL: string | null | undefined;
-  gender?: "Male" | "Female" | null | undefined;
-  relation?: "Single" | "Married" | "Engaged" | "In Relation";
-  city?: string | undefined | null;
-  birthday?: string | undefined | null;
+  photoURL?: Mixed;
+  gender?: Gender;
+  relation?: Relation;
+  city?: Mixed;
+  birthday?: Mixed;
   phone?: string;
 };
+export type AppUser = User;
 
 export type PanelItem = {
   icon: JSX.Element;

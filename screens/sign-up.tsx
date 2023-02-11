@@ -3,19 +3,20 @@ import React, { useState } from "react";
 import { AntDesign, Ionicons, Entypo } from "@expo/vector-icons";
 import { User } from "../typings";
 
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-  updateCurrentUser,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import useGetAuth from "../hooks/useGetAuth";
-import { useAuth } from "../hooks/useAuth";
+import { styles } from "../constants";
+import { useTranslation } from "react-i18next";
 
 const SignUp = ({ navigation }) => {
   const auth = useGetAuth();
-  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [user, setUser] = useState<User>({
+    email: "",
+    password: "",
+    displayName: "",
+    photoURL: "",
+  });
+  const { t } = useTranslation();
   const handleSignUp = async () => {
     try {
       createUserWithEmailAndPassword(auth, user.email, user.password)
@@ -40,7 +41,8 @@ const SignUp = ({ navigation }) => {
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
           <Entypo name="email" size={24} color="black" />
           <TextInput
-            placeholder="Email@gmail.com"
+            style={styles.input}
+            placeholder={t("screens.email-placeholder")}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
             onChangeText={(text) => setUser({ ...user, email: text })}
           />
@@ -48,7 +50,8 @@ const SignUp = ({ navigation }) => {
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
           <AntDesign name="user" size={24} color="black" />
           <TextInput
-            placeholder="Pro Chef"
+            style={styles.input}
+            placeholder={t("screens.username-placeholder")}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
             onChangeText={(text) => setUser({ ...user, displayName: text })}
           />
@@ -56,7 +59,8 @@ const SignUp = ({ navigation }) => {
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
           <Ionicons name="key-outline" size={24} color="black" />
           <TextInput
-            placeholder="Password"
+            style={styles.input}
+            placeholder={t("screens.password-placeholder")}
             secureTextEntry={true}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
             onChangeText={(text) => setUser({ ...user, password: text })}
@@ -69,17 +73,17 @@ const SignUp = ({ navigation }) => {
         >
           <AntDesign name="login" size={24} color="white" />
           <Text className="font-semibold text-white text-lg tracking-widest ml-3">
-            Sign Up
+            {t("actions.sign-up")}
           </Text>
         </TouchableOpacity>
         <Text className="mx-auto font-semibold text-gray-800 capitalize">
-          Already have account ?{" "}
+          {t("screens.have-account")} ?{" "}
           <View>
             <Text
               className="-mb-1 text-blue-500 font-bold"
               onPress={() => navigation.navigate("Login")}
             >
-              Sign in
+              {t("actions.sign-in")}
             </Text>
           </View>
         </Text>

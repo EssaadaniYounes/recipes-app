@@ -10,11 +10,12 @@ import {
   Feather,
 } from "@expo/vector-icons";
 
-import { updateProfile } from "firebase/auth";
 import useGetAuth from "../hooks/useGetAuth";
 import { Panel, UserInfo } from "../components/index";
 import useGetUser from "../hooks/useGetUser";
+import { useTranslation } from "react-i18next";
 function Profile({ navigation }) {
+  const { t } = useTranslation();
   const auth = useGetAuth();
   const { user } = useGetUser(auth.currentUser, navigation);
   const logout = () => {
@@ -27,10 +28,10 @@ function Profile({ navigation }) {
     <ScrollView className="bg-gray-100 px-4 py-2 space-y-2">
       <UserInfo user={user} navigation={navigation} />
       <Panel
-        title="Activites"
+        title={t("user.activites")}
         panelItems={[
           {
-            title: "favorites",
+            title: t("user.favorites"),
             icon: (
               <MaterialIcons name="favorite-outline" size={24} color="black" />
             ),
@@ -39,23 +40,23 @@ function Profile({ navigation }) {
             },
           },
           {
-            title: "downloads",
+            title: t("user.downloads"),
             icon: <AntDesign name="download" size={24} color="black" />,
           },
         ]}
       />
       <Panel
-        title="Preferences"
+        title={t("user.preferences")}
         panelItems={[
           {
-            title: "Langue",
+            title: t("user.language"),
             icon: <Fontisto name="world-o" size={18} color="#5c5959" />,
             callBack() {
               return navigation.navigate("Languages");
             },
           },
           {
-            title: "Theme",
+            title: t("user.theme"),
             icon: (
               <MaterialCommunityIcons
                 name="theme-light-dark"
@@ -65,7 +66,7 @@ function Profile({ navigation }) {
             ),
           },
           {
-            title: "Notifications",
+            title: t("user.notifications"),
             icon: (
               <Ionicons
                 name="notifications-outline"
@@ -77,18 +78,18 @@ function Profile({ navigation }) {
         ]}
       />
       <Panel
-        title="App"
+        title={t("user.app")}
         panelItems={[
           {
-            title: "Rate us",
+            title: t("user.rate-us"),
             icon: <AntDesign name="staro" size={20} color="#5c5959" />,
           },
           {
-            title: "Share with your friends",
+            title: t("user.share"),
             icon: <EvilIcons name="share-google" size={24} color="#5c5959" />,
           },
           {
-            title: "About",
+            title: t("user.about"),
             icon: <Feather name="info" size={22} color="#5c5959" />,
           },
         ]}
@@ -100,7 +101,7 @@ function Profile({ navigation }) {
         className="mb-4 mt-2 bg-red-400 p-3 w-2/3 mx-auto rounded-xl shadow-sm shadow-gray-700 flex-row justify-center items-center space-x-2"
       >
         <Text className="text-center uppercase font-semibold text-white text-[16px]">
-          Logout
+          {t("actions.log-out")}
         </Text>
         <AntDesign name="logout" size={18} color="#F9FAFB" />
       </TouchableOpacity>

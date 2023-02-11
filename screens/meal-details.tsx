@@ -2,7 +2,6 @@ import { ScrollView, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import Details from "../components/MealDetails";
 import { MealDetail } from "../typings";
-import { fetch } from "../utils/fetch";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../firebase";
 import {
