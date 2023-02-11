@@ -1,6 +1,0 @@
-    "@react-native-community/checkbox": "^0.5.14",
- "@react-native-firebase/app": "^16.7.0",
-    "@react-native-firebase/auth": "^17.0.0",
-        "react-native-date-picker": "^4.2.6",
-    "react-native-device-info": "^10.3.0",
-    "react-native-get-app-name": "^1.5.0",

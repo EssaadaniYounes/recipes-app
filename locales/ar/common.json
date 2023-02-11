@@ -1,0 +1,58 @@
+{
+    "screens": {
+        "recipes": "الوصفات",
+        "recipe": "تفاصيل الوصفة",
+        "ingredients": "المكونات",
+        "summary": "الملخص",
+        "min": "دقيقة",
+        "email-placeholder": "Email@gmail.com",
+        "username-placeholder": "اسم المستعمل",
+        "password-placeholder": "كلمة السر",
+        "photo-url": "رابط الصورة",
+        "birthday-placeholder": "تاريخ الميلاد",
+        "phone-placeholder": "الهاتف",
+        "city-placeholder": "المدينة",
+        "dont-have-account": "ليس لديك أي حساب",
+        "have-account": "لديك حساب بالفعل",
+        "editing": "...تعديل"
+    },
+    "languages": {
+        "en": "انجليزية",
+        "ar": "عربية"
+    },
+    "actions": {
+        "edit": "تعديل",
+        "cancel": "الغاء",
+        "edit-profile": "تعديل الملف الشخصي",
+        "log-out": "تسجيل الخروج",
+        "login": "دخول",
+        "sign-up": "اشتراك",
+        "sign-in": "تسجيل الدخول",
+        "select-relation": "حدد العلاقة",
+        "change-language": "تغيير لغة التطبيق"
+    },
+    "user": {
+        "activites": "الأنشطة",
+        "favorites": "المفضلة",
+        "downloads": "التحميلات",
+        "language": "اللغة",
+        "theme": "اللون",
+        "notifications": "الاشعارات",
+        "rate-us": "قيم التطبيق",
+        "share": "شارك مع أصدقائك",
+        "about": "معلومات عنا",
+        "app": "التطبيق",
+        "preferences": "التفضيلات"
+    },
+    "relations": {
+        "single": "أعزب",
+        "married": "متزوج",
+        "engaged": "مرتبط",
+        "in-relation": "في علاقة",
+        "widower": "أرمل"
+    },
+    "gender": {
+        "male": "ذكر",
+        "female": "أنثى"
+    }
+}

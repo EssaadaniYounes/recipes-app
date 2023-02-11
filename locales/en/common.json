@@ -1,0 +1,58 @@
+{
+    "screens": {
+        "recipes": "Recipes",
+        "recipe": "Recipe",
+        "ingredients": "Ingredients",
+        "summary": "Summary",
+        "min": "Min",
+        "email-placeholder": "Email@gmail.com",
+        "username-placeholder": "Username",
+        "password-placeholder": "Password",
+        "photo-url": " Photo URL",
+        "birthday-placeholder": "Date of birth",
+        "phone-placeholder": "Phone",
+        "city-placeholder": "City",
+        "dont-have-account": "You don't have account",
+        "have-account": "Already had an account",
+        "editing": "editing..."
+    },
+    "languages": {
+        "en": "English",
+        "ar": "Arabic"
+    },
+    "actions": {
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "edit-profile": "Edit profile",
+        "log-out": "Log out",
+        "login": "Login",
+        "sign-up": "Sign up",
+        "sign-in": "Sign in",
+        "select-relation": "Select relationship",
+        "change-language": "Change App Language"
+    },
+    "user": {
+        "activites": "activites",
+        "favorites": "favorites",
+        "downloads": "downloads",
+        "language": "language",
+        "theme": "theme",
+        "notifications": "notifications",
+        "rate-us": "Rate us",
+        "share": "Share with your friends",
+        "about": "About us",
+        "app": "App",
+        "preferences": "preferences"
+    },
+    "relations": {
+        "single": "single",
+        "married": "married",
+        "engaged": "engaged",
+        "in-relation": "in relation",
+        "widower": "widower"
+    },
+    "gender": {
+        "male": "male",
+        "female": "female"
+    }
+}
