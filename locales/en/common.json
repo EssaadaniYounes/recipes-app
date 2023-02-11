@@ -1,0 +1,14 @@
+{
+    "screens": {
+        "recipes": "Recipes",
+        "email-placeholder": "Email@gmail.com",
+        "password-placeholder": "Password",
+        "login": "Sign in",
+        "sign-up": "Sign up",
+        "dont-have-account": "You dont have any account"
+    },
+    "languages": {
+        "en": "English",
+        "ar": "Arabic"
+    }
+}

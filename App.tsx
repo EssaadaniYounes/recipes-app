@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Meals, MealDetails, PostMeal, Login } from "./screens";
 import RootNavigation from "./stacks/MainStack";
-
+import { AppSplash } from "./components/AppSplash";
+import "./locales/i18n";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
-  return <RootNavigation />;
+  return (
+    <AppSplash isAppReady={true}>
+      <RootNavigation />
+    </AppSplash>
+  );
 }

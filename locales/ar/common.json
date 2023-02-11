@@ -1,0 +1,14 @@
+{
+    "screens": {
+        "recipes": "الوجبات",
+        "email-placeholder": "Email@gmail.com",
+        "password-placeholder": "كلمة السر",
+        "login": "دخول",
+        "sign-up": "اشتراك",
+        "dont-have-account": "ليس لديك أي حساب"
+    },
+    "languages": {
+        "en": "انجليزية",
+        "ar": "عربية"
+    }
+}

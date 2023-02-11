@@ -50,6 +50,9 @@ function Profile({ navigation }) {
           {
             title: "Langue",
             icon: <Fontisto name="world-o" size={18} color="#5c5959" />,
+            callBack() {
+              return navigation.navigate("Languages");
+            },
           },
           {
             title: "Theme",

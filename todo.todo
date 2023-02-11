@@ -1,3 +1,1 @@
-favorite => id, meal_id, favored_by, timestamp
-meals => id, ....
-favorites.find(f=> f.meal_id== meal.id)
+0.72549  0.72549  0.72549
