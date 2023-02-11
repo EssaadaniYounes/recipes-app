@@ -9,8 +9,10 @@ import {
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../firebase";
 import { User } from "firebase/auth";
-export default function useGetUser(currentUser?: User, navigation?) {
-  const [user, setUser] = useState({
+import { AppUser } from "../typings";
+
+export default function useGetUser(currentUser?: User | null, navigation?) {
+  const [user, setUser] = useState<AppUser>({
     email: currentUser?.email,
     displayName: currentUser?.displayName,
     photoURL: currentUser?.photoURL,

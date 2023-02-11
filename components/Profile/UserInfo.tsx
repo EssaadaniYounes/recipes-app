@@ -1,20 +1,22 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { User } from "../../typings";
-import { Card } from "../index";
+import { ArrowIcon, Card } from "../index";
 import {
-  AntDesign,
   Feather,
   FontAwesome,
   Fontisto,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 type Props = {
   user: User;
   navigation: { navigate: (screen: string, options?: {}) => {} };
 };
+
 const UserInfo = ({ user, navigation }: Props) => {
+  const { t } = useTranslation();
   return (
     <View>
       <Card>
@@ -37,10 +39,12 @@ const UserInfo = ({ user, navigation }: Props) => {
         <TouchableOpacity
           onPress={() => navigation.navigate("EditProfile")}
           activeOpacity={0.5}
-          className="bg-[#3083ff] flex-row w-32 rounded-3xl p-3 px-4 items-center justify-center"
+          className="bg-[#3083ff] min-w-[200px] flex-row w-32 rounded-3xl p-3 px-4 items-center justify-center"
         >
-          <Text className="text-gray-50 font-medium">Edit Profile</Text>
-          <AntDesign name="right" size={18} color="#F9FAFB" />
+          <Text className="text-gray-50 font-medium">
+            {t("actions.edit-profile")}
+          </Text>
+          <ArrowIcon color="#F9FAFB" />
         </TouchableOpacity>
       </Card>
       <Card style={{ marginTop: 8 }}>
@@ -54,14 +58,16 @@ const UserInfo = ({ user, navigation }: Props) => {
           {user.gender && (
             <View className="flex-row items-center space-x-3 border-b-2 border-gray-200 pb-2 w-full">
               <FontAwesome name="intersex" size={22} color="black" />
-              <Text className="font-semibold text-gray-600">{user.gender}</Text>
+              <Text className="font-semibold text-gray-600">
+                {t(`gender.${user.gender}`)}
+              </Text>
             </View>
           )}
           {user.relation && (
             <View className="flex-row items-center space-x-3 border-b-2 border-gray-200 pb-2 w-full">
               <Ionicons name="heart-outline" size={22} color="black" />
               <Text className="font-semibold text-gray-600">
-                {user.relation}
+                {t(`relations.${user.relation}`)}
               </Text>
             </View>
           )}

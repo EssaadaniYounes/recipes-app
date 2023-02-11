@@ -18,7 +18,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { User } from "../typings";
+import { Relation, User } from "../typings";
 import SelectDropdown from "react-native-select-dropdown";
 import { updateProfile } from "firebase/auth";
 import { initializeApp } from "firebase/app";
@@ -34,11 +34,15 @@ import {
   where,
 } from "firebase/firestore";
 import useGetUser from "../hooks/useGetUser";
+import { RELATIONS, styles } from "../constants";
+import { useTranslation } from "react-i18next";
 
 const EditProfile = ({ navigation }) => {
   const auth = useGetAuth();
   const [editing, setEditing] = useState(false);
   const { user, setUser } = useGetUser(auth.currentUser);
+  const { t } = useTranslation();
+
   const update = async () => {
     setEditing(true);
     updateProfile(auth.currentUser, {
@@ -97,20 +101,22 @@ const EditProfile = ({ navigation }) => {
           <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
             <Entypo name="email" size={24} color="black" />
             <TextInput
+              style={styles.input}
               placeholder="Email@gmail.com"
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, email: text })}
-              value={user.email}
+              value={user.email || ""}
             />
           </View>
           {/* Name */}
           <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
             <AntDesign name="user" size={24} color="black" />
             <TextInput
-              placeholder="Pro Chef"
+              style={styles.input}
+              placeholder={t("screens.username-placeholder")}
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, displayName: text })}
-              value={user.displayName}
+              value={user.displayName || ""}
             />
           </View>
           {/*Gender  */}
@@ -118,23 +124,24 @@ const EditProfile = ({ navigation }) => {
             <View className="flex-row items-center justify-center space-x-2">
               <Ionicons name="man-outline" size={24} color="black" />
               <RadioButton
-                value="Male"
-                status={user.gender === "Male" ? "checked" : "unchecked"}
-                onPress={() => setUser({ ...user, gender: "Male" })}
+                value="male"
+                status={user.gender === "male" ? "checked" : "unchecked"}
+                onPress={() => setUser({ ...user, gender: "male" })}
               />
             </View>
             <View className="flex-row items-center justify-center space-x-2">
               <Ionicons name="woman-outline" size={24} color="black" />
               <RadioButton
-                value="Female"
-                status={user.gender === "Female" ? "checked" : "unchecked"}
-                onPress={() => setUser({ ...user, gender: "Female" })}
+                value="female"
+                status={user.gender === "female" ? "checked" : "unchecked"}
+                onPress={() => setUser({ ...user, gender: "female" })}
               />
             </View>
           </View>
           {/* Relation */}
           <View className="flex-row justify-center px-2">
             <SelectDropdown
+              onChangeSearchInputText={() => {}}
               buttonStyle={{
                 width: "100%",
                 borderRadius: 12,
@@ -145,40 +152,44 @@ const EditProfile = ({ navigation }) => {
               buttonTextStyle={{
                 color: "#454649",
               }}
-              defaultButtonText="Select Relationship"
-              data={["Single", "Married", "Engaged", "In Relation"]}
-              onSelect={(selectedItem, index) => {
-                setUser({ ...user, relation: selectedItem });
+              defaultButtonText={t("actions.select-relation") || ""}
+              data={RELATIONS.map((r) => t("relations." + r))}
+              onSelect={(selectedItem: Relation, index) => {
+                setUser({ ...user, relation: RELATIONS[index] });
               }}
-              defaultValue={user.relation}
+              defaultValue={t(`relations.${user.relation}`)}
             />
           </View>
           {/* PhotoURL */}
           <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
             <AntDesign name="link" size={24} color="black" />
             <TextInput
-              placeholder="Profile URL"
+              style={styles.input}
+              placeholder={t("screens.photo-url")}
               multiline
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, photoURL: text })}
-              value={user.photoURL}
+              value={user.photoURL || ""}
             />
           </View>
           {/* Birthday */}
           <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
             <Fontisto name="date" size={24} color="black" />
             <TextInput
-              placeholder="Birthday 02/02/2003"
+              style={styles.input}
+              placeholder={t("screens.birthday-placeholder")}
+              // placeholder="Birthday 02/02/2003"
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, birthday: text })}
-              value={user.birthday}
+              value={user.birthday || ""}
             />
           </View>
           {/* Phone */}
           <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
             <Feather name="phone" size={24} color="black" />
             <TextInput
-              placeholder="Phone"
+              style={styles.input}
+              placeholder={t("screens.phone-placeholder")}
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, phone: text })}
               value={user.phone}
@@ -192,10 +203,11 @@ const EditProfile = ({ navigation }) => {
               color="black"
             />
             <TextInput
-              placeholder="City"
+              style={styles.input}
+              placeholder={t("screens.city-placeholder")}
               className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
               onChangeText={(text) => setUser({ ...user, city: text })}
-              value={user.city}
+              value={user.city || ""}
             />
           </View>
 
@@ -206,7 +218,7 @@ const EditProfile = ({ navigation }) => {
               className="bg-[#3083ff] rounded-lg w-1/3 px-8 py-[10px] "
             >
               <Text className="font-medium text-white text-center">
-                {editing ? "Editing..." : "Edit"}
+                {editing ? t("screens.editing") : t("actions.edit")}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -214,7 +226,7 @@ const EditProfile = ({ navigation }) => {
               className="border-gray-500 border-2 rounded-lg w-1/3  px-8 py-2"
             >
               <Text className="text-gray-500 font-semibold text-center">
-                Cancel
+                {t("actions.cancel")}
               </Text>
             </TouchableOpacity>
           </View>

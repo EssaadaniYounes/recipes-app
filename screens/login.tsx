@@ -13,8 +13,11 @@ import { User } from "../typings";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import useGetAuth from "../hooks/useGetAuth";
+import { useTranslation } from "react-i18next";
+import { styles } from "../constants";
 
 const Login = ({ navigation }) => {
+  const { t } = useTranslation();
   const auth = useGetAuth();
   const [user, setUser] = useState<User>({ email: "", password: "" });
   const handleLogin = async () => {
@@ -29,7 +32,7 @@ const Login = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       behavior="padding"
-      className="flex items-center justify-center h-screen"
+      className="flex  items-center justify-center h-screen"
     >
       <Image
         source={require("../assets/images/meals/logo.png")}
@@ -39,7 +42,8 @@ const Login = ({ navigation }) => {
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
           <AntDesign name="user" size={24} color="black" />
           <TextInput
-            placeholder="Email@gmail.com"
+            style={styles.input}
+            placeholder={t("screens.email-placeholder")}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
             onChangeText={(text) => setUser({ ...user, email: text })}
           />
@@ -47,7 +51,8 @@ const Login = ({ navigation }) => {
         <View className="flex flex-row p-4 border mx-2 rounded-lg border-gray-500">
           <Ionicons name="key-outline" size={24} color="black" />
           <TextInput
-            placeholder="Password"
+            style={styles.input}
+            placeholder={t("screens.password-placeholder")}
             secureTextEntry={true}
             className="mx-2 pl-1 placeholder-gray-800 font-semibold min-w-[300px]"
             onChangeText={(text) => setUser({ ...user, password: text })}
@@ -60,17 +65,17 @@ const Login = ({ navigation }) => {
         >
           <AntDesign name="login" size={24} color="white" />
           <Text className="font-semibold text-white text-lg tracking-widest ml-3">
-            Sign in
+            {t("actions.login")}
           </Text>
         </TouchableOpacity>
         <Text className="mx-auto font-semibold text-gray-800 capitalize">
-          you don't have any account ?{" "}
+          {t("screens.dont-have-account")} ?{" "}
           <View>
             <Text
               className="-mb-1 text-blue-500 font-bold"
               onPress={() => navigation.navigate("SignUp")}
             >
-              Sign Up
+              {t("actions.sign-up")}
             </Text>
           </View>
         </Text>
