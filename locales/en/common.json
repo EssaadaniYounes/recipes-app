@@ -37,6 +37,8 @@
         "downloads": "downloads",
         "language": "language",
         "theme": "theme",
+        "light-theme": "Light",
+        "dark-theme": "Dark",
         "notifications": "notifications",
         "rate-us": "Rate us",
         "share": "Share with your friends",

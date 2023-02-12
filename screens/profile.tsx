@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, TouchableOpacity, Text, Appearance } from "react-native";
 import {
   AntDesign,
   MaterialIcons,
@@ -9,13 +9,20 @@ import {
   EvilIcons,
   Feather,
 } from "@expo/vector-icons";
-
+import { styled, useColorScheme } from "nativewind";
 import useGetAuth from "../hooks/useGetAuth";
 import { Panel, UserInfo } from "../components/index";
 import useGetUser from "../hooks/useGetUser";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useTheme from "../hooks/useTheme";
+import useColors from "../hooks/useColors";
+const StyledText = styled(Text);
 function Profile({ navigation }) {
   const { t } = useTranslation();
+
+  const { theme, toggleTheme } = useTheme();
+  const colors = useColors();
   const auth = useGetAuth();
   const { user } = useGetUser(auth.currentUser, navigation);
   const logout = () => {
@@ -24,8 +31,11 @@ function Profile({ navigation }) {
       .then(() => console.log("Logout Done"))
       .catch((er) => console.error(er));
   };
+
   return (
-    <ScrollView className="bg-gray-100 px-4 py-2 space-y-2">
+    <ScrollView
+      className={`${colors.background} duration-100 px-4 py-2 space-y-2`}
+    >
       <UserInfo user={user} navigation={navigation} />
       <Panel
         title={t("user.activites")}
@@ -56,7 +66,12 @@ function Profile({ navigation }) {
             },
           },
           {
-            title: t("user.theme"),
+            title:
+              (theme == "light"
+                ? t("user.dark-theme")
+                : t("user.light-theme")) +
+              " " +
+              t("user.theme"),
             icon: (
               <MaterialCommunityIcons
                 name="theme-light-dark"
@@ -64,6 +79,9 @@ function Profile({ navigation }) {
                 color="#5c5959"
               />
             ),
+            callBack() {
+              toggleTheme();
+            },
           },
           {
             title: t("user.notifications"),

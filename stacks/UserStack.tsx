@@ -17,6 +17,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import HeaderProfile from "../components/HeaderProfile";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
+import Theme from "../screens/theme";
 
 const Header = ({
   title,
